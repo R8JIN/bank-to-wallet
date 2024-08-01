@@ -1,0 +1,57 @@
+<div  class="container" >
+    <div class="card" [appCustomColor]="data.digitalWallet" >
+    <!-- Header Section -->
+    <div class="row  m-2">
+      <div class="col-10 m-auto d-flex justify-content-center">
+        <h4 class="text-white text-center">Money Transfer Statement ({{data.digitalWallet}})</h4>
+      </div> 
+      <div class="col m-auto d-flex justify-content-end"><button class="btn-close" aria-label="Close" (click)="emitEvent()"></button></div>
+    </div>
+
+    <!-- User Details Section -->
+    <div class="card mb-2 mx-2">
+      <div class="card-header">
+        <h5>Transfer Details</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Sender Name:</strong> {{username}}</p>
+            <p><strong>Transfer Date:</strong> {{data.transactionDate| date:'short'}}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Recipient Wallet ID:</strong> {{data.recipientId}}</p>
+            <p><strong>Transfer Amount:</strong> Rs. {{data.amount}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transfer Status -->
+    <div class="card mx-2 mb-2">
+      <div class="card-header">
+        <h5>Transfer Status</h5>
+      </div>
+      <div class="card-body ">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Remarks</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{data.transactionDate| date:'short'}}</td>
+              <td>{{data.remarks}}</td>
+              <td>Rs {{data.amount}}</td>
+              <td>Completed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+  </div>

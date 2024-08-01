@@ -1,0 +1,60 @@
+<div class="container">
+   <div class="row ">
+    <div class="col m-3 d-flex justify-content-start">
+        <a [routerLink]="['/']" class="link-light"> 
+            <i class="fa-solid fa-piggy-bank">  Bank</i>
+        </a>
+    </div>
+
+    <div class="col m-2 d-flex justify-content-end">
+        <div *ngIf="username">
+            <div class="dropdown">
+                <a class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  
+                    <li class="dropdown-item">{{username}}</li>
+                    <li class="dropdown-item">Balance: NPR. 
+                        0.0</li>
+                    <li class="dropdown-item  text-dark" (click)="logout()">
+                        Logout
+                    </li>
+                 
+                </div>
+              </div>
+           
+        </div>
+        <div *ngIf="not_login">
+            <div class="row"> 
+                <div class="col-9 d-flex justify-content-end">
+                    <form [formGroup]="loginForm" (ngSubmit)="login()" class="form-group ">
+                        <div class="row ">
+                            <div class="col-md-5">
+                                <input formControlName="username" class="form-control" type="text" placeholder="Username" aria-label="Username">
+                            </div>
+                            <div class="col-md-5">
+                                <input formControlName="password" class="form-control " type="password" placeholder="Password" aria-label="Password">
+                            </div>
+                            <div class="col-md-1">
+                            
+                                <button class="btn btn-success " type="submit">Login</button>
+                            </div>  
+                        </div> 
+                    </form> 
+                </div>
+                
+                <div class="col-2 d-flex justify-content-end ">
+                    <button class="btn btn-secondary ">Signup</button>
+                </div>
+             </div>
+        </div>
+
+        
+                        
+    </div>
+    </div>
+
+   
+
+

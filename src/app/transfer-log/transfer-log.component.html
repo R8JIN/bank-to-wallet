@@ -1,0 +1,52 @@
+<div class="m-4">
+  <h4 class="text-center">
+    <i class="fa-solid fa-book"> Wallet Transfer Log ( {{dataList.length}} ) </i>
+  </h4>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="d-flex justify-content-start">
+      <div class="col-5">
+        <!-- <h4 class="d-flex justify-content-center"> Log ( {{dataList.length}} )</h4> -->
+        <div class="card m-2" style="width: 16rem;" *ngFor="let data of dataList| paginate: { itemsPerPage: 2, currentPage: p }">
+          <div class="card-body" [appHighlight]="'lightgreen'" (click)="setData(data)">
+            <p class="card-text">
+              <b>Recipient ID: {{data["recipientId"]}}</b>
+            </p>
+            <p ><i class="fa-solid fa-money-bill"></i> Amount: NPR. {{data["amount"]}}</p>
+            <p ><i class="fa-solid fa-wallet"></i> Wallet Service: {{data["digitalWallet"]}}</p>
+            <p ><i class="fa-solid fa-comment"></i> Remarks: {{data["remarks"]}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="col-9 m-2">
+    <div class="row">
+    <div class="card" style="min-height: 450px;">
+      <div *ngIf="!statement" class="card-body d-flex flex-column justify-content-center align-items-center">
+        <div  class=" ">  
+          <small class="card-text text-dark text-opacity-25">
+            <i class="fa-solid fa-book"> Click to view wallet transfer statement </i>
+          </small>
+          
+        </div>
+      </div>
+      <div *ngIf="statement" class="card-body align-items-center"> 
+        <app-statement (statement)="handleEvent($event)" [data]="data"  ></app-statement>
+     </div>
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="d-flex justify-content-center m-2">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- <app-statement [data]="statement"></app-statement> -->
+

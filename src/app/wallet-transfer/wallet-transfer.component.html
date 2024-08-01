@@ -1,0 +1,67 @@
+<div class="m-4">
+    
+    <div class="row m-1">
+        <div class="col-3">
+            <app-form-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-form-message>
+        </div>        
+        <div class="col-8 mb-4">
+            <h3 class="text-center"><i class="fas fa-money-bill"> Wallet Transfer</i></h3>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-3 ">
+            
+            <div class="card" style="width: 18rem;">
+                <div class="card-head bg-dark bg-dark text-white bg-opacity-75 text-center ">
+                    <b> 
+                        <i class="fa-solid fa-money-bill m-2"> Transfer to wallet</i> 
+                    </b>
+                </div>
+                <div class="card-body bg-light">                    
+                    <form [formGroup]="transferForm" (ngSubmit)="transferToWallet()">
+                        <div class="form-row">
+                            <div class="form-group col my-3">
+                                <label for="RecipientId">Recipient Id <i class="fa-solid fa-user"> </i></label>
+                                <input type="text" formControlName="recipientId" class="form-control" id="RecipientId" placeholder="Recipient Id">
+                            </div>
+                            <div class="form-group col my-3">
+                                <label for="amount">Amount <i class="fa-solid fa-money-bill"> </i> </label>
+                                <input type="number" formControlName="amount" class="form-control" id="amount" placeholder="Amount">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col my-3">
+                                <label for="digtalwallet">Digital wallet <i class="fa-solid fa-wallet"> </i> </label>
+                                <select id="digtalwallet"  formControlName="digitalWallet" class="form-control">
+                            
+                                <option selected>Esewa</option>
+                                <option>FonePay</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group col my-3">
+                            <label for="inputRemarks">
+                                Remarks <i class="fa-solid fa-comment"></i>  
+                            </label>
+                            <input type="text" class="form-control" formControlName="remarks" id="inputRemarks" placeholder="Remarks">
+                            
+
+                            </div>
+                        <div class="d-flex justify-content-center mt-2">
+                            <button type="submit" class="btn btn-success">Transfer</button>
+                        </div>
+                    </form>
+                </div>
+        
+            </div>
+        </div>
+
+        <div *ngIf="statement" class="col-9 bg"> 
+            <app-statement (statement)="handleEvent($event)" [data]="responseData"  ></app-statement>
+         </div>
+    
+    </div>
+
+</div>
