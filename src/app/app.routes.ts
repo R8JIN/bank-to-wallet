@@ -4,6 +4,7 @@ import { WalletTransferComponent } from './wallet-transfer/wallet-transfer.compo
 import { StatementComponent } from './statement/statement.component';
 import { HomeComponent } from './home/home.component';
 import { TransferLogComponent } from './transfer-log/transfer-log.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
     {
@@ -25,5 +26,10 @@ export const routes: Routes = [
         path:'wallet-statements',
         component: TransferLogComponent,
         title: 'Wallet Statements'
+      },
+      {
+        path:'profile',
+        component: ProfileComponent,
+        title: 'Profile'
       }
 ];

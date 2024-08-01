@@ -1,0 +1,20 @@
+<div *ngIf="!auth_token">
+    <app-not-authorize></app-not-authorize>
+</div>
+<div *ngIf="auth_token" class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mt-5">
+                <div class="card-body text-center">
+                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="rounded-circle mb-3">
+                    <h2 class="card-title">{{username}}</h2>
+                    <p class="card-text"><strong>Balance:</strong> NPR. 0.0</p>
+                    <p class="card-text"><strong>Email:</strong> {{email}} </p>
+                    <p class="card-text"><strong>Phone:</strong> 9868205857</p>
+                    <p class="card-text"><strong>Location:</strong> Pith-Barahi, Bhaktapur</p>
+                    <a [routerLink]="['/wallet-statements']" class="btn btn-success">Wallet Transfer Log</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

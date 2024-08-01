@@ -1,0 +1,48 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="display-4">401 Unauthorized</h1>
+            <p class="lead">Sorry, you are not authorized to access this page.</p>
+            
+
+             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#loginModal">
+                Login
+              </button>
+              
+              <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header bg-dark bg-opacity-75">
+                        
+                        <h5 class="modal-title text-center text-white" id="loginModalLabel">Login To Access</h5>
+                    
+                        <!-- <div class="col-2 d-flex justify-content-end">
+                            <h5 class="close" data-bs-dismiss="modal" aria-label="Close" aria-hidden="true">
+                                &times;
+                            </h5>
+                        </div> -->
+ 
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="email" class="form-label">Username</label>
+                          <input type="email" class="form-control" id="username">
+                        </div>
+                        <div class="mb-3">
+                          <label for="password" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="password">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-success">Login</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+        </div>
+    </div>
+</div>

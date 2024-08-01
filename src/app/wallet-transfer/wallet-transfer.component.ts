@@ -24,6 +24,7 @@ export class WalletTransferComponent {
   successMessage: string = '';
   responseData: any;
   statement = false;
+  auth_token: string = '';
 
   localService = inject(LocalService);
   walletTransferService = inject(WalletTransferService);
@@ -31,7 +32,7 @@ export class WalletTransferComponent {
   errorMessage: string = '';
 
   constructor(private router:Router){
-
+      this.auth_token =  this.localService.getData("token");
   }
 
   transferForm = new FormGroup(

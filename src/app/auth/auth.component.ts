@@ -48,6 +48,7 @@ export class AuthComponent {
   login(){
 
     if(this.loginForm.valid){
+
       console.log("The username is ", this.loginForm.value.username);
       this.authService.login(this.loginForm.value.username, 
         this.loginForm.value.password).subscribe(
@@ -58,6 +59,8 @@ export class AuthComponent {
         
         this.localService.saveData("token", String(response.token));
         this.localService.saveData("username", String(response.username));
+        this.localService.saveData("email", String(response.email));
+        
         this.not_login = false;
         this.username = this.localService.getData("username");
         this.loginForm.reset(); 
@@ -81,8 +84,11 @@ export class AuthComponent {
     this.localService.clearData();
     this.not_login=true;
     this.username = this.localService.getData("username") || "";
-    this.showSuccess("See you !!!");
+    this.router.navigate(["/"]);
+    this.showError("See you !!!");
+ 
   }
+
 
   showSuccess(msg:string) {
     this.toastr.success(msg);
