@@ -65,11 +65,20 @@ export class AuthComponent {
         this.username = this.localService.getData("username");
         this.loginForm.reset(); 
         this.router.navigate(["/"]);
+
         this.showSuccess("Login Successful");
     
       },
       error => {
-        console.error('Error submitting application', error);  
+        
+        if(error.status === 401){
+          console.error('Error submitting application', typeof(error.status));  
+          this.showError('Bad Credentials. Please enter valid username or password.');
+        }
+        else{
+          this.showError("You are unauthorized to access the page");
+        }
+
       }
       ); 
     }

@@ -10,11 +10,12 @@ import { stat } from 'node:fs';
 import { CustomColorDirective } from '../attributes/custom-color.directive';
 import { FormMessageComponent } from '../form-message/form-message.component';
 import { TransferLogComponent } from '../transfer-log/transfer-log.component';
+import { NotAuthorizeComponent } from '../not-authorize/not-authorize.component';
 
 @Component({
   selector: 'app-wallet-transfer',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, 
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, NotAuthorizeComponent,
     StatementComponent, FormMessageComponent, CustomColorDirective, TransferLogComponent],
   templateUrl: './wallet-transfer.component.html',
   styleUrl: './wallet-transfer.component.css'

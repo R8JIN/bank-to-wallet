@@ -6,11 +6,12 @@ import { HighlightDirective } from '../attributes/highlight.directive';
 import { CommonModule } from '@angular/common';
 import { StatementComponent } from '../statement/statement.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NotFoundComponent } from '../not-found/not-found.component';
 
 @Component({
   selector: 'app-transfer-log',
   standalone: true,
-  imports: [HighlightDirective, CommonModule, StatementComponent, NgxPaginationModule],
+  imports: [HighlightDirective, CommonModule, StatementComponent, NgxPaginationModule, NotFoundComponent],
   templateUrl: './transfer-log.component.html',
   styleUrl: './transfer-log.component.css'
 })

@@ -14,8 +14,8 @@
     padding: 16px !important; /* Padding */
   }
   
-  .toast-top-right {
-    top: 10px;
+  .toast-bottom-right {
+    bottom: 10px;
     right: 10px;
   }
 

@@ -1,0 +1,37 @@
+<!-- <p>user-detail works!</p>
+<button class="btn btn-primary" (click)="getUser()">on click</button> -->
+<div *ngIf="!auth_token">
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+      <div class="row">
+          <div class="col-md-12 text-center">
+              <!-- <h1 class="display-4">401 Unauthorized</h1>
+              <p class="lead">Sorry, you are not authorized to access this page.</p>
+              <a href="/login" class="btn btn-primary">Go to Login</a> -->
+              <app-not-authorize></app-not-authorize>
+          </div>
+      </div>
+    </div>
+</div>
+<h2 *ngIf="auth_token" class="text-center text-success m-4">User List</h2>
+<div class="container mt-5">
+    
+    <table class="table  table-bordered">
+        <thead class="table-success">
+            <tr class="text-center">
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Roles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of data" class="text-center">
+                <td >{{d.username}}</td>
+                <td>{{d.email}}</td>
+                <td *ngFor="let role of d.roles">
+                    {{user_role.get(role.name)}} 
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>
