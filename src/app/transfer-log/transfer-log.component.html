@@ -10,8 +10,12 @@
   </div>
 </div>
 
+<div *ngIf="auth_token && dataList.length==0">
+    <app-not-found></app-not-found>
+</div>
 
-<div *ngIf="auth_token">
+
+<div *ngIf="auth_token && dataList.length > 0" >
 <div class="m-4">
   <h4 class="text-center">
     <i class="fa-solid fa-book"> Wallet Transfer Log ( {{dataList.length}} ) </i>
