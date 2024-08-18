@@ -26,4 +26,29 @@ export class UserService {
     )
     return this.http.get(this.apiUrl, {headers:header} );
   }
+
+  getUserDetail(id:any): Observable<any>{
+    const auth_token = this.localService.getData("token");
+    const header =new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${auth_token}`
+    });
+
+    return this.http.get(`${this.apiUrl}/${id}`, {headers:header})
+  }
+
+  assignNewRole(id:any, role:any): Observable<any>{
+
+    const auth_token = this.localService.getData("token");
+    const header =new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${auth_token}`
+    });
+
+    const body ={
+      'role': role
+    }
+
+    return this.http.patch(`${this.apiUrl}/assign-role?userId=${id}`,JSON.stringify(body) ,{headers:header})
+  }
 }
