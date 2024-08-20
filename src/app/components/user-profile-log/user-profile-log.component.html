@@ -1,0 +1,72 @@
+<!-- <div *ngIf="!auth_token">
+    <app-not-authorize></app-not-authorize>
+</div> -->
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="row mt-2 justify-content-center">
+            <div class="col-2">
+                <app-form-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-form-message>
+                
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card mt-1">
+                <div class="card-body text-center">
+                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="rounded-circle mb-3">
+                    <h2 class="card-title">{{data.username | uppercase}}</h2>
+                    <p class="card-text"><strong>Balance:</strong> NPR. 0.0</p>
+                    <p class="card-text"><strong>Email:</strong> {{data.email}} </p>
+                    <p class="card-text"><strong>Phone:</strong> 9868205857</p>
+                    
+                    <p class="card-text"><strong>Location:</strong> Pith-Barahi, Bhaktapur</p>
+                    <div class="d-flex justify-content-center">
+                        <strong class="me-2 mt-3">Roles:</strong>
+                        <div class="d-flex flex-wrap">
+                            <div *ngFor="let role of data.roles">
+                                <span class="badge bg-success p-2 my-3 ms-1">
+                                    {{user_role.get(role.name)}}
+                                </span>
+                                <sup *ngIf="editMode">
+                                    <span class="dot mb-2 me-1" (click)="removeOldRole(user_role.get(role.name))">
+                                        <i class="fa-solid fa-xmark fa-sm text-white p-1"></i>
+                                    </span>
+                                </sup>
+                            </div>
+                            <div *ngFor="let role of roleList">
+                                <span  class="badge bg-success p-2 my-3">{{role}}</span>
+                                <sup>
+                                    <span class="dot mb-2 me-1" (click)="removeRole(role)">
+                                        <i class="fa-solid fa-xmark fa-sm text-white p-1"></i>
+                                    </span>
+                                </sup>
+                            </div>
+                        </div>
+                    
+                        <i class="fa-solid fa-pencil ms-2 mt-1" (click)="toggleEditMode()" 
+                        *ngIf="!editMode && availableRoles.length > 0"></i>
+
+                        <form  *ngIf="editMode && availableRoles.length > 0" class="d-flex align-items-center ">
+                            <select [(ngModel)]="newRole" name="role" class="form-select form-select-sm " required>
+                                <option *ngFor="let role of availableRoles" [value]="role">
+                                    {{role}}
+                                </option>
+                            </select>
+                            <button class="btn btn-secondary btn-sm ms-2" (click)="addRole(newRole)">Add</button>
+                            <!-- <button class="btn btn-success btn-sm ms-2" *ngIf="roleList !=0" (click)="assignRole()" type="submit">Assign</button> -->
+                        </form>
+                        <div class="d-flex align-items-center ms-1">
+                        <button class="btn btn-success btn-sm ms-2" *ngIf="roleList !=0" (click)="assignRole()" type="submit">Assign</button>
+                        </div>
+                    </div>
+                    
+<!-- 
+                    <div class="card-text" *ngIf="editMode">
+
+                    </div> -->
+                    <!-- <a [routerLink]="['/wallet-statements']" class="btn btn-success">Wallet Transfer Log</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

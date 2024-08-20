@@ -60,6 +60,7 @@ export class AuthComponent {
         this.localService.saveData("token", String(response.token));
         this.localService.saveData("username", String(response.username));
         this.localService.saveData("email", String(response.email));
+        this.localService.saveData("roles", response.roles);
         
         this.not_login = false;
         this.username = this.localService.getData("username");
