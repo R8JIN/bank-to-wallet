@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LocalService } from '../local/local.service';
@@ -50,5 +50,25 @@ export class UserService {
     }
 
     return this.http.patch(`${this.apiUrl}/assign-role?userId=${id}`,JSON.stringify(body) ,{headers:header})
+  }
+
+  removeOldRole(id:any, role:any): Observable<any>{
+
+    const auth_token = this.localService.getData("token");
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+
+    const body = {
+      'role': role
+    }
+    const req = new HttpRequest('DELETE', `${this.apiUrl}/remove-role?userId=${id}`, body, {
+      headers: header
+
+    })
+
+    console.log("The request log is", req);
+    return this.http.request(req);
   }
 }

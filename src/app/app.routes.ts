@@ -7,6 +7,8 @@ import { TransferLogComponent } from './transfer-log/transfer-log.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { UserProfileLogComponent } from './components/user-profile-log/user-profile-log.component';
+import { AuthGuard } from './guard/auth.guard';
+import { NotAuthorizeComponent } from './not-authorize/not-authorize.component';
 
 export const routes: Routes = [
     {
@@ -40,7 +42,12 @@ export const routes: Routes = [
         // component: UserDetailComponent,
         loadComponent: () => import('./components/user-detail/user-detail.component').then(m => m.UserDetailComponent),
         title: 'User List',
-        // canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'not-authorize',
+        component: NotAuthorizeComponent,
+        title:'Not Authorize'
       },
       {
         path:'admin/user-list/:id',

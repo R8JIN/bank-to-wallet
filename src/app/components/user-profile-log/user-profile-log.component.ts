@@ -21,11 +21,14 @@ export class UserProfileLogComponent {
   data:any;
   route = inject(ActivatedRoute);
   userService = inject(UserService);
+
   user_role:any;
   roleList:any = [];
-
   availableRoles: string[] =[];
+  removeRoleList: string[] = [];
+
   successMessage!:string;
+  errorMessage!: string;
   
   constructor(private router: Router){
     this.userProfileId = parseInt(this.route.snapshot.params['id'], 10);
@@ -48,7 +51,7 @@ export class UserProfileLogComponent {
 
       console.log("The sample role are ", sampleRole);
       this.availableRoles = this.availableRoles.filter(role => !sampleRole.includes(role));
-      console.log("The profile detail is ", this.data);
+      
     })
   }
 
@@ -56,21 +59,41 @@ export class UserProfileLogComponent {
 
 
   addRole(role: string) {   
-    this.newRole = '';
-    console.log(`Assigning role: ${role}`);
-    this.roleList.push(role);
-    this.availableRoles.splice(this.availableRoles.indexOf(role), 1);
-    console.log("The available Roles", this.availableRoles);
-    
+    if(role){
+      this.newRole = '';
+      console.log(`Assigning role: ${role}`);
+      this.roleList.push(role);
+      this.availableRoles.splice(this.availableRoles.indexOf(role), 1);
+      console.log("The available Roles", this.availableRoles);
+    }   
+  }
 
-      
+  removeRole(role:string){
+
+    this.roleList.splice(this.availableRoles.indexOf(role), 1);
+    this.availableRoles.push(role);
   }
 
   assignRole(){
     this.userService.assignNewRole(this.userProfileId, this.roleList).subscribe((response:any)=>{
       console.log("The response ", response);
-      this.successMessage = "New role assign";
+      window.location.reload();
+      // this.successMessage = "New role assigned.";
+      // setTimeout(()=>this.successMessage='',3000);
     })
+  }
+
+  removeOldRole(role:string){
+    this.removeRoleList.push(role);
+    console.log("The role is ", this.removeRoleList);
+    this.userService.removeOldRole(this.userProfileId, this.removeRoleList).subscribe((response:any) => {
+      console.log("The response ", response);
+      window.location.reload();
+      // this.errorMessage = "Role removed.";
+      // setTimeout(()=>this.errorMessage='',3000);
+    }
+    );
+
   }
 
   toggleEditMode(){
