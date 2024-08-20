@@ -2,36 +2,46 @@
     <app-not-authorize></app-not-authorize>
 </div> -->
 <div class="container">
+
     <div class="row justify-content-center">
-        <app-form-message *ngIf="successMessage" successMessage="New Role Assign"></app-form-message>
+        <div class="row mt-1 justify-content-center">
+            <div class="col-2">
+                <app-form-message *ngIf="successMessage" successMessage="New Role Assign"></app-form-message>
+            </div>
+        </div>
         <div class="col-md-8">
             <div class="card mt-5">
                 <div class="card-body text-center">
                     <img src="https://via.placeholder.com/150" alt="Profile Picture" class="rounded-circle mb-3">
-                    <h2 class="card-title">{{data.username}}</h2>
+                    <h2 class="card-title">{{data.username | uppercase}}</h2>
                     <p class="card-text"><strong>Balance:</strong> NPR. 0.0</p>
                     <p class="card-text"><strong>Email:</strong> {{data.email}} </p>
                     <p class="card-text"><strong>Phone:</strong> 9868205857</p>
                     
                     <p class="card-text"><strong>Location:</strong> Pith-Barahi, Bhaktapur</p>
-                    <div class="d-flex align-items-center text-center">
+                    <div class="d-flex justify-content-center">
                         <strong class="me-2">Roles:</strong>
                         <div class="d-flex flex-wrap">
                             <span *ngFor="let role of data.roles" class="badge bg-success me-1">
                                 {{user_role.get(role.name)}}
                             </span>
+                            <span *ngFor="let role of roleList" class="badge bg-success me-1">
+                                {{role}}
+                            </span>
                         </div>
                     
-                        <i class="fa-solid fa-pencil ms-2" (click)="toggleEditMode()" *ngIf="!editMode"></i>
+                        <i class="fa-solid fa-pencil ms-2" (click)="toggleEditMode()" 
+                        *ngIf="!editMode && availableRoles.length > 0"></i>
 
-                        <form (submit)="assignRole(newRole)" *ngIf="editMode" class="d-flex align-items-center ms-2">
+                        <form  *ngIf="editMode && availableRoles.length > 0" class="d-flex align-items-center ms-2">
                             <select [(ngModel)]="newRole" name="role" class="form-select form-control-sm" required>
                                 <option *ngFor="let role of availableRoles" [value]="role">
                                     {{role}}
                                 </option>
                             </select>
-                            <button class="btn btn-success ms-2" type="submit">Assign</button>
+                            <button class="btn btn-secondary ms-2" (click)="addRole(newRole)">Add</button>
                         </form>
+                        <button class="btn btn-primary ms-2" *ngIf="roleList !=0" (click)="assignRole()" type="submit">Assign</button>
                     </div>
                     
 
