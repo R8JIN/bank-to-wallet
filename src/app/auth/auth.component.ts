@@ -72,12 +72,16 @@ export class AuthComponent {
       },
       error => {
         
-        if(error.status === 401){
+        if(error.status === 400){
           console.error('Error submitting application', typeof(error.status));  
           this.showError('Bad Credentials. Please enter valid username or password.');
         }
+        else if(error.status == 408){
+          this.showError('User session expired.');
+        }
         else{
           this.showError("You are unauthorized to access the page");
+
         }
 
       }
@@ -85,7 +89,7 @@ export class AuthComponent {
     }
     else{
       console.log("Error");
-      this.showError("Please fill the user form");
+      this.showError("Please fill the user login form");
     }
 
   }

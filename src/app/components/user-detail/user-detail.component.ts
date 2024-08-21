@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NotAuthorizeComponent } from '../../not-authorize/not-authorize.component';
 import { Router } from '@angular/router';
 import { HighlightDirective } from '../../attributes/highlight.directive';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-detail',
@@ -24,7 +25,9 @@ export class UserDetailComponent{
   auth_token!:string;
   user_role:any;
 
-  constructor(private router:Router, private http:HttpClient){
+  constructor(private router:Router, 
+              private http:HttpClient, 
+              private toastr:ToastrService){
 
     this.auth_token =  this.localService.getData("token") || "";
     this.user_role= new Map([
@@ -44,10 +47,29 @@ export class UserDetailComponent{
     });
     this.http.get("http://localhost:8080/api/v1/client", {headers:header}).subscribe(
       (response:any)=>{
-        if(response?.data && response){
+        
+        if(response?.status==408){
+          this.showError('User session expired.');
+        }
+        if(response?.data && response.success==true){
           console.log("The response from the server is", response);
           this.data = response.data;
         }
+        console.log("The response from the server is", response);
+
+
+      },
+      error=>{
+        if(error.status == 408){
+          // console.error('User session expired');
+          this.showError('User session expired.');
+          
+        }
+        else{
+          this.showError("You are unauthorized to access the page");
+
+        }
+
       }
     )
     
@@ -69,4 +91,11 @@ export class UserDetailComponent{
     this.router.navigate([`/admin/user-list/${id}`]);
   }
 
+  showSuccess(msg:string) {
+    this.toastr.success(msg);
+  }
+
+  showError(msg:string){
+    this.toastr.error(msg);
+  }
 }
