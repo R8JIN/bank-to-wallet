@@ -10,7 +10,7 @@
 
 <h2 *ngIf="auth_token" class="text-center text-success m-4"><i class="fa-solid fa-user-group"> User List ({{data.length}})</i></h2>
 <div class="container mt-5">
-    <table class="table table-bordered">
+    <table class="table table-bordered" *ngIf="data.length > 0">
         <thead class="table-success">
             <tr  class="text-center">
                 <th scope="col">USERNAME</th>

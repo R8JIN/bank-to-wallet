@@ -64,9 +64,15 @@ export class WalletTransferComponent {
 
         },
         error => {
+          if(error.status == 408){
+            this.setErrorMessage("User session Expired. Please login to make wallet transfer");
+            setTimeout(()=>this.errorMessage='', 3000);
+          }
+          else{
           console.error('Error submitting application', error);  
           this.setErrorMessage(error.error.message);
           setTimeout(()=>this.errorMessage='',3000);
+          }
         }
         ); 
      }
